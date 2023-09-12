@@ -41,14 +41,18 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor() or not hidden:
 		velocity.y -= gravity * delta
+	
+	if is_on_ceiling() and UPGRADES.claws:
+		velocity.y = 0
 
 	var direction := Vector3(Input.get_axis("move_right", "move_left"), 0, 0).normalized()
 	
-	if is_on_floor():
+	if is_on_floor() or (is_on_ceiling() and UPGRADES.claws):
 		velocity.x = lerp(velocity.x, 0.0, delta * 60.0) # fake friction, TODO air friction/control
 
 	if direction:
 		if is_on_floor(): velocity.x += direction.x * SPEED
+		if is_on_ceiling() and UPGRADES.claws: velocity.x += direction.x * (SPEED * 0.2)
 		camera_pivot.rotation.y = clamp(camera_pivot.rotation.y - (direction.x * 0.1), -0.1, 0.1)
 		if is_on_wall() and not is_on_floor():
 			if velocity.y < 0.0:
@@ -57,6 +61,8 @@ func _physics_process(delta: float) -> void:
 		camera_pivot.rotation.y = 0.0
 
 	if Input.is_action_just_pressed("jump"):
+		if is_on_ceiling() and UPGRADES.claws:
+			velocity.y = -JUMP_VELOCITY
 		if not is_on_floor() and can_double_jump:
 			can_double_jump = false
 			velocity.y = JUMP_VELOCITY * 1.5
