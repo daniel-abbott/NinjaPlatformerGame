@@ -20,7 +20,6 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var hidden := false
 var can_wall_jump := true
 var is_wall_jumping := false
-var last_wall_normal: float
 var can_double_jump := false
 
 # onready nodes
@@ -72,10 +71,8 @@ func _physics_process(delta: float) -> void:
 			can_wall_jump = true
 			if UPGRADES.jump_boots: can_double_jump = true
 		if is_on_wall() and not is_on_floor() and can_wall_jump:
-			can_wall_jump = false if last_wall_normal == get_wall_normal().normalized().x else true
 			is_wall_jumping = true
-			last_wall_normal = get_wall_normal().normalized().x
-			velocity.x += last_wall_normal * SPEED
+			velocity.x += get_wall_normal().x * SPEED
 			velocity.y = JUMP_VELOCITY
 
 	move_and_slide()
