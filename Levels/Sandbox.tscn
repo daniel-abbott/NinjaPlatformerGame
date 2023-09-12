@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bw2ormxsco84x"]
+[gd_scene load_steps=13 format=3 uid="uid://bw2ormxsco84x"]
 
 [ext_resource type="Script" path="res://Actors/Player/Player.gd" id="1_ttirv"]
 [ext_resource type="Script" path="res://Temp/HideTest.gd" id="2_f1xrt"]
@@ -13,6 +13,32 @@ size = Vector2(64, 128)
 [sub_resource type="SphereShape3D" id="SphereShape3D_nf76g"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_jw8hc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yxcyy"]
+
+[sub_resource type="Sky" id="Sky_80rgs"]
+sky_material = SubResource("ProceduralSkyMaterial_yxcyy")
+
+[sub_resource type="Environment" id="Environment_uwdam"]
+background_mode = 2
+sky = SubResource("Sky_80rgs")
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_blend_mode = 0
+volumetric_fog_density = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohq1r"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fx0d6"]
+material = SubResource("StandardMaterial3D_ohq1r")
+size = Vector3(3, 1, 1)
 
 [node name="Sandbox" type="Node3D"]
 
@@ -72,6 +98,7 @@ shape = SubResource("CapsuleShape3D_00qtp")
 
 [node name="PlaceholderSprite" type="Sprite3D" parent="Player"]
 billboard = 2
+shaded = true
 texture = SubResource("PlaceholderTexture2D_ev432")
 
 [node name="CameraPivot" type="Node3D" parent="Player"]
@@ -104,3 +131,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 billboard = 1
 no_depth_test = true
 text = "hide"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uwdam")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, -1)
+mesh = SubResource("BoxMesh_fx0d6")
