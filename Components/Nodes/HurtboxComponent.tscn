@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpimw4ari1wm7"]
+
+[ext_resource type="Script" path="res://Components/Code/HurtboxComponent.gd" id="1_33hv6"]
+
+[node name="HurtboxComponent" type="Node"]
+script = ExtResource("1_33hv6")
