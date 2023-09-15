@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://44igykiaw8ch"]
+
+[ext_resource type="Texture2D" uid="uid://b1btblipgtq4j" path="res://Assets/spikeEmitter.png" id="1_lmids"]
+[ext_resource type="Texture2D" uid="uid://gb8xmql0no0b" path="res://Assets/spike.png" id="2_2qgj7"]
+[ext_resource type="Script" path="res://Components/Code/HurtboxComponent.gd" id="3_q7ych"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qcwkh"]
+points = PackedVector3Array(0, 1, 0, -0.45, -1, 0.15, 0.45, -1, 0.15, 0, -1, 0.4, 0, -1, -0.4)
+
+[node name="Spike" type="Node3D"]
+
+[node name="SpikeEmitter" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001, 0)
+pixel_size = 0.042
+axis = 1
+texture_filter = 2
+texture = ExtResource("1_lmids")
+
+[node name="Spike" type="Sprite3D" parent="SpikeEmitter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.419642, 0)
+pixel_size = 0.042
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_2qgj7")
+
+[node name="HurtboxComponent" type="Area3D" parent="SpikeEmitter/Spike"]
+script = ExtResource("3_q7ych")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpikeEmitter/Spike/HurtboxComponent"]
+transform = Transform3D(0.423142, 0, 0, 0, 0.423142, 0, 0, 0, 0.423142, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_qcwkh")
