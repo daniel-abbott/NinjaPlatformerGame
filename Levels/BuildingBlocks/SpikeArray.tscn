@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1e8dra6k7bfc"]
-
-[ext_resource type="Script" path="res://Levels/BuildingBlocks/SpikeArray.gd" id="1_cry16"]
-
-[node name="SpikeArray" type="Node3D"]
-script = ExtResource("1_cry16")

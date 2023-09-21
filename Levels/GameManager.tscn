@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://5kcwusxhues2"]
+
+[ext_resource type="Script" path="res://Levels/GameManager.gd" id="1_x5h74"]
+
+[node name="MainScene" type="Node"]
+script = ExtResource("1_x5h74")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+
+[node name="LoadedLevel" type="Node" parent="."]

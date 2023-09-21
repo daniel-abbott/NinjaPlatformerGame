@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbaxv5b3kphwg"]
+
+[ext_resource type="Script" path="res://Components/HitboxComponent.gd" id="1_rc25a"]
+[ext_resource type="PackedScene" uid="uid://c1wxbcv061s16" path="res://Components/HealthComponent.tscn" id="2_wjhn8"]
+
+[node name="HitboxComponent" type="Node"]
+script = ExtResource("1_rc25a")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_wjhn8")]
