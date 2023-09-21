@@ -8,6 +8,6 @@ func _ready():
 	area_entered.connect(hit)
 
 
-func hit(otherArea: Area2D):
+func hit(otherArea: Area3D):
 	if otherArea is HurtboxComponent:
 		otherArea.applyDamage(_healthComponent)

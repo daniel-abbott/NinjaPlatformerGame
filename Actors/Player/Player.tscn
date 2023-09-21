@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bghdbw3mw3emy"]
+
+[ext_resource type="Script" path="res://Actors/Player/Player.gd" id="1_2umlm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6shjk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_00qtp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ev432"]
+size = Vector2(64, 128)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1863, 2, 0)
+axis_lock_linear_z = true
+script = ExtResource("1_2umlm")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_6shjk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_00qtp")
+
+[node name="PlaceholderSprite" type="Sprite3D" parent="."]
+billboard = 2
+shaded = true
+texture = SubResource("PlaceholderTexture2D_ev432")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="CameraPosition" type="Node3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/CameraPosition"]
+top_level = true
+current = true
+fov = 60.0
